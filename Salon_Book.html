@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sai Shardhaa Salon - Book Your Appointment</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .header {
+            text-align: center;
+            padding: 30px 0 20px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            margin-bottom: 25px;
+        }
+
+        .salon-logo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            font-weight: bold;
+            margin: 0 auto 20px auto;
+            border: 4px solid rgba(255,255,255,0.3);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .salon-name {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            background: linear-gradient(45deg, #ffd700, #ffed4a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .owner-name {
+            font-size: 16px;
+            opacity: 0.9;
+            margin-bottom: 15px;
+        }
+
+        .tagline {
+            font-size: 14px;
+            opacity: 0.8;
+            font-style: italic;
+        }
+
+        .section {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .section:hover {
+            background: rgba(255,255,255,0.15);
+            transform: translateY(-2px);
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .address-section {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .address-section:hover {
+            background: rgba(255,255,255,0.2);
+            transform: scale(1.02);
+        }
+
+        .address-text {
+            font-size: 16px;
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+
+        .map-hint {
+            font-size: 12px;
+            opacity: 0.8;
+            text-align: center;
+            padding: 8px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .service-item {
+            background: rgba(255,255,255,0.2);
+            padding: 15px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .service-item:hover {
+            background: rgba(255,255,255,0.3);
+            transform: scale(1.05);
+        }
+
+        .service-icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .service-name {
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .service-price {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        .contact-grid {
+            display: grid;
+            gap: 15px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .contact-item:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .contact-info {
+            flex: 1;
+        }
+
+        .contact-label {
+            font-size: 12px;
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .contact-value {
+            font-size: 14px;
+            font-weight: 500;
+            margin-top: 2px;
+        }
+
+        .booking-btn {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 20px 25px;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+        .booking-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.4);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: white;
+            font-size: 20px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .social-link:hover {
+            background: rgba(255,255,255,0.3);
+            transform: scale(1.1);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 2000;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 400px;
+            width: 100%;
+            margin: 50px auto;
+            color: white;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .modal-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .form-input, .form-select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 10px;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            font-size: 14px;
+        }
+
+        .form-input::placeholder {
+            color: rgba(255,255,255,0.6);
+        }
+
+        .form-input:focus, .form-select:focus {
+            outline: none;
+            border-color: #ff6b6b;
+            background: rgba(255,255,255,0.15);
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .btn-primary {
+            flex: 1;
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary {
+            flex: 1;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 15px 20px;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.9);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 25px;
+            font-size: 14px;
+            z-index: 3000;
+            max-width: 90%;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .notification.show {
+            opacity: 1;
+        }
+
+        .hours-grid {
+            display: grid;
+            gap: 8px;
+            font-size: 14px;
+        }
+
+        .hours-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .salon-logo {
+                width: 80px;
+                height: 80px;
+                font-size: 32px;
+            }
+            
+            .salon-name {
+                font-size: 28px;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+            
+            .services-grid {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            }
+        }
+
+        @media (max-width: 360px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-item {
+                padding: 12px;
+            }
+            
+            .modal-content {
+                padding: 20px;
+                margin: 20px auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <div class="header">
+            <div class="salon-logo">SS</div>
+            <div class="salon-name">Sai Shardhaa</div>
+            <div class="owner-name">Owner: Bhavesh Hire</div>
+            <div class="tagline">Premium Men's Salon & Grooming</div>
+        </div>
+
+        <!-- Address Section -->
+        <div class="section address-section" onclick="openGoogleMaps()">
+            <div class="section-title">
+                📍 Visit Our Salon
+            </div>
+            <div class="address-text">
+                123 Fashion Street, MG Road<br>
+                Near Central Mall, Pune<br>
+                Maharashtra - 411001
+            </div>
+            <div class="map-hint">
+                🗺️ Tap here to open in Google Maps
+            </div>
+        </div>
+
+        <!-- Services Section -->
+        <div class="section">
+            <div class="section-title">
+                ✂️ Our Services
+            </div>
+            <div class="services-grid">
+                <div class="service-item" onclick="selectService('Hair Cut')">
+                    <div class="service-icon">✂️</div>
+                    <div class="service-name">Hair Cut</div>
+                    <div class="service-price">₹200 - ₹500</div>
+                </div>
+                <div class="service-item" onclick="selectService('Beard Trim')">
+                    <div class="service-icon">🪒</div>
+                    <div class="service-name">Beard Trim</div>
+                    <div class="service-price">₹150 - ₹300</div>
+                </div>
+                <div class="service-item" onclick="selectService('Hair Wash')">
+                    <div class="service-icon">🧴</div>
+                    <div class="service-name">Hair Wash</div>
+                    <div class="service-price">₹100 - ₹200</div>
+                </div>
+                <div class="service-item" onclick="selectService('Facial')">
+                    <div class="service-icon">🧖‍♂️</div>
+                    <div class="service-name">Facial</div>
+                    <div class="service-price">₹500 - ₹1000</div>
+                </div>
+                <div class="service-item" onclick="selectService('Massage')">
+                    <div class="service-icon">💆‍♂️</div>
+                    <div class="service-name">Head Massage</div>
+                    <div class="service-price">₹300 - ₹600</div>
+                </div>
+                <div class="service-item" onclick="selectService('Styling')">
+                    <div class="service-icon">💫</div>
+                    <div class="service-name">Hair Styling</div>
+                    <div class="service-price">₹300 - ₹800</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="section">
+            <div class="section-title">
+                📞 Contact Information
+            </div>
+            <div class="contact-grid">
+                <div class="contact-item" onclick="window.location.href='tel:+919876543210'">
+                    <div class="contact-icon">📱</div>
+                    <div class="contact-info">
+                        <div class="contact-label">Primary Phone</div>
+                        <div class="contact-value">+91 98765 43210</div>
+                    </div>
+                </div>
+                
+                <div class="contact-item" onclick="window.location.href='tel:+919123456789'">
+                    <div class="contact-icon">☎️</div>
+                    <div class="contact-info">
+                        <div class="contact-label">Secondary Phone</div>
+                        <div class="contact-value">+91 91234 56789</div>
+                    </div>
+                </div>
+                
+                <div class="contact-item" onclick="window.location.href='mailto:info@saishardhaa.com'">
+                    <div class="contact-icon">📧</div>
+                    <div class="contact-info">
+                        <div class="contact-label">Email</div>
+                        <div class="contact-value">info@saishardhaa.com</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Business Hours -->
+        <div class="section">
+            <div class="section-title">
+                🕐 Business Hours
+            </div>
+            <div class="hours-grid">
+                <div class="hours-item">
+                    <span>Monday - Friday</span>
+                    <span>9:00 AM - 9:00 PM</span>
+                </div>
+                <div class="hours-item">
+                    <span>Saturday</span>
+                    <span>9:00 AM - 10:00 PM</span>
+                </div>
+                <div class="hours-item">
+                    <span>Sunday</span>
+                    <span>10:00 AM - 8:00 PM</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Book Appointment Button -->
+        <div class="section">
+            <button class="booking-btn" onclick="openBookingModal()">
+                📅 Book Appointment Now
+            </button>
+            
+            <!-- Social Media Links -->
+            <div class="section-title" style="text-align: center; margin-top: 20px;">
+                🌐 Follow Us
+            </div>
+            <div class="social-links">
+                <a href="https://wa.me/919876543210" target="_blank" class="social-link" title="WhatsApp">
+                    💬
+                </a>
+                <a href="https://instagram.com/saishardhaa" target="_blank" class="social-link" title="Instagram">
+                    📷
+                </a>
+                <a href="https://facebook.com/saishardhaa" target="_blank" class="social-link" title="Facebook">
+                    📘
+                </a>
+                <a href="tel:+919876543210" class="social-link" title="Call Us">
+                    📞
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Booking Modal -->
+    <div id="bookingModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">📅 Book Your Appointment</div>
+                <p>Fill in your details to schedule your visit</p>
+            </div>
+            
+            <form id="bookingForm">
+                <div class="form-group">
+                    <label class="form-label">Full Name *</label>
+                    <input type="text" id="customerName" class="form-input" placeholder="Enter your full name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Phone Number *</label>
+                    <input type="tel" id="customerPhone" class="form-input" placeholder="+91 XXXXX XXXXX" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Service Required *</label>
+                    <select id="serviceType" class="form-select" required>
+                        <option value="">Select a service</option>
+                        <option value="Hair Cut">Hair Cut (₹200 - ₹500)</option>
+                        <option value="Beard Trim">Beard Trim (₹150 - ₹300)</option>
+                        <option value="Hair Wash">Hair Wash (₹100 - ₹200)</option>
+                        <option value="Facial">Facial (₹500 - ₹1000)</option>
+                        <option value="Massage">Head Massage (₹300 - ₹600)</option>
+                        <option value="Styling">Hair Styling (₹300 - ₹800)</option>
+                        <option value="Combo">Combo Package</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Preferred Date *</label>
+                    <input type="date" id="appointmentDate" class="form-input" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Preferred Time *</label>
+                    <select id="appointmentTime" class="form-select" required>
+                        <option value="">Select time slot</option>
+                        <option value="09:00">9:00 AM</option>
+                        <option value="09:30">9:30 AM</option>
+                        <option value="10:00">10:00 AM</option>
+                        <option value="10:30">10:30 AM</option>
+                        <option value="11:00">11:00 AM</option>
+                        <option value="11:30">11:30 AM</option>
+                        <option value="12:00">12:00 PM</option>
+                        <option value="14:00">2:00 PM</option>
+                        <option value="14:30">2:30 PM</option>
+                        <option value="15:00">3:00 PM</option>
+                        <option value="15:30">3:30 PM</option>
+                        <option value="16:00">4:00 PM</option>
+                        <option value="16:30">4:30 PM</option>
+                        <option value="17:00">5:00 PM</option>
+                        <option value="17:30">5:30 PM</option>
+                        <option value="18:00">6:00 PM</option>
+                        <option value="18:30">6:30 PM</option>
+                        <option value="19:00">7:00 PM</option>
+                        <option value="19:30">7:30 PM</option>
+                        <option value="20:00">8:00 PM</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Special Requests</label>
+                    <input type="text" id="specialRequests" class="form-input" placeholder="Any specific requirements...">
+                </div>
+            </form>
+            
+            <div class="btn-group">
+                <button type="button" class="btn-primary" onclick="submitBooking()">
+                    ✅ Confirm Booking
+                </button>
+                <button type="button" class="btn-secondary" onclick="closeBookingModal()">
+                    ❌ Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Set minimum date to today
+        document.getElementById('appointmentDate').min = new Date().toISOString().split('T')[0];
+
+        function openGoogleMaps() {
+            const address = "123 Fashion Street, MG Road, Near Central Mall, Pune, Maharashtra 411001";
+            const encodedAddress = encodeURIComponent(address);
+            
+            // Try to open in Google Maps app first, then fallback to web
+            const googleMapsApp = `https://maps.google.com/maps?q=${encodedAddress}`;
+            const googleMapsWeb = `https://www.google.com/maps/search/?api=1&query=${encodedAddress}`;
+            
+            // For mobile devices, try app first
+            if (/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                window.open(googleMapsApp, '_blank');
+            } else {
+                window.open(googleMapsWeb, '_blank');
+            }
+            
+            showNotification('Opening Google Maps... 🗺️');
+        }
+
+        function selectService(service) {
+            document.getElementById('serviceType').value = service;
+            openBookingModal();
+            showNotification(`${service} selected! 📋`);
+        }
+
+        function openBookingModal() {
+            document.getElementById('bookingModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeBookingModal() {
+            document.getElementById('bookingModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function submitBooking() {
+            const form = document.getElementById('bookingForm');
+            const formData = new FormData(form);
+            
+            // Get form values
+            const name = document.getElementById('customerName').value;
+            const phone = document.getElementById('customerPhone').value;
+            const service = document.getElementById('serviceType').value;
+            const date = document.getElementById('appointmentDate').value;
+            const time = document.getElementById('appointmentTime').value;
+            const requests = document.getElementById('specialRequests').value;
+
+            // Basic validation
+            if (!name || !phone || !service || !date || !time) {
+                showNotification('Please fill in all required fields! ❌');
+                return;
+            }
+
+            // Phone validation
+            const phoneRegex = /^[+]?[0-9]{10,13}$/;
+            if (!phoneRegex.test(phone.replace(/\s+/g, ''))) {
+                showNotification('Please enter a valid phone number! ❌');
+                return;
+            }
+
+            // Create booking summary
+            const bookingDetails = `
+🎉 Booking Confirmed!
+
+👤 Customer: ${name}
+📱 Phone: ${phone}
+✂️ Service: ${service}
+📅 Date: ${date}
+🕐 Time: ${time}
+${requests ? `📝 Requests: ${requests}` : ''}
+
+📍 Sai Shardhaa Salon
+123 Fashion Street, MG Road, Pune
+
+We'll call you to confirm your appointment!
+            `.trim();
+
+            // Create WhatsApp message
+            const whatsappMessage = `Hi Sai Shardhaa Salon! I'd like to book an appointment:
+
+👤 Name: ${name}
+📱 Phone: ${phone}
+✂️ Service: ${service}
+📅 Date: ${date}
+🕐 Time: ${time}
+${requests ? `📝 Special Requests: ${requests}` : ''}
+
+Please confirm my booking. Thank you!`;
+
+            const whatsappUrl = `https://wa.me/919876543210?text=${encodeURIComponent(whatsappMessage)}`;
+
+            // Show confirmation and options
+            showBookingConfirmation(bookingDetails, whatsappUrl, phone);
+        }
+
+        function showBookingConfirmation(details, whatsappUrl, phone) {
+            const modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.style.display = 'block';
+            
+            modal.innerHTML = `
+                <div class="modal-content" style="text-align: center;">
+                    <div class="modal-header">
+                        <div style="font-size: 48px; margin-bottom: 20px;">🎉</div>
+                        <div class="modal-title">Booking Request Sent!</div>
+                    </div>
+                    
+                    <div style="text-align: left; background: rgba(255,255,255,0.1); padding: 20px; border-radius: 15px; margin: 20px 0; font-size: 14px; line-height: 1.6;">
+                        ${details.replace(/\n/g, '<br>')}
+                    </div>
+                    
+                    <div style="margin: 25px 0;">
+                        <p style="margin-bottom: 15px;">Choose how to confirm your booking:</p>
+                        <div style="display: grid; gap: 10px;">
+                            <button class="btn-primary" onclick="window.open('${whatsappUrl}', '_blank'); this.parentElement.parentElement.parentElement.parentElement.remove(); closeBookingModal();">
+                                💬 Send via WhatsApp
+                            </button>
+                            <button class="btn-primary" onclick="window.location.href='tel:+919876543210'; this.parentElement.parentElement.parentElement.parentElement.remove(); closeBookingModal();">
+                                📞 Call to Confirm
+                            </button>
+                            <button class="btn-secondary" onclick="copyBookingDetails('${details.replace(/'/g, "\\'")}'); this.parentElement.parentElement.parentElement.parentElement.remove(); closeBookingModal();">
+                                📋 Copy Details
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <button class="btn-secondary" onclick="this.parentElement.parentElement.remove(); closeBookingModal();" style="width: 100%; margin-top: 15px;">
+                        ✅ Done
+                    </button>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            
+            // Reset form
+            document.getElementById('bookingForm').reset();
+        }
+
+        function copyBookingDetails(details) {
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(details).then(() => {
+                    showNotification('Booking details copied! 📋');
+                });
+            } else {
+                const textArea = document.createElement('textarea');
+                textArea.value = details;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                showNotification('Booking details copied! 📋');
+            }
+        }
+
+        function showNotification(message) {
+            const existingNotification = document.querySelector('.notification');
+            if (existingNotification) {
+                existingNotification.remove();
+            }
+
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.classList.add('show');
