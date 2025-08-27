@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sai Shardhaa Salon - Book Your Appointment</title>
+    <!-- Font Awesome for real icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #EFA84C 0%, #ffcf6c 100%);
+            min-height: 100vh;
+            color: white;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .header {
+            text-align: center;
+            padding: 30px 0 20px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            margin-bottom: 25px;
+        }
+
+        .salon-logo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #EFA84C, #ffcf6c);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            font-weight: bold;
+            margin: 0 auto 20px auto;
+            border: 4px solid rgba(255,255,255,0.3);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .salon-name {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            background: linear-gradient(45deg, #fff6db, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .owner-name {
+            font-size: 16px;
+            opacity: 0.9;
+            margin-bottom: 15px;
+        }
+
+        .tagline {
+            font-size: 14px;
+            opacity: 0.8;
+            font-style: italic;
+        }
+
+        .section {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .section:hover {
+            background: rgba(255,255,255,0.15);
+            transform: translateY(-2px);
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .booking-btn {
+            background: linear-gradient(135deg, #EFA84C, #ffcf6c);
+            color: white;
+            padding: 20px 25px;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+        .booking-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.4);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: white;
+            font-size: 22px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .social-link:hover {
+            background: rgba(255,255,255,0.3);
+            transform: scale(1.1);
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.9);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 25px;
+            font-size: 14px;
+            z-index: 3000;
+            max-width: 90%;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .notification.show {
+            opacity: 1;
+        }
+
+        /* New: Map, Pricing & Portfolio styles */
+        .map-wrap{border-radius:15px; overflow:hidden; border:1px solid rgba(255,255,255,0.25); box-shadow:0 8px 25px rgba(0,0,0,0.25)}
+        .map-iframe{width:100%; height:260px; border:0}
+
+        .pricing-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:14px}
+        .price-card{background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.25); border-radius:14px; padding:16px; transition:transform .2s ease, background .2s ease}
+        .price-card:hover{transform:translateY(-3px); background:rgba(255,255,255,0.18)}
+        .price-title{font-weight:700; margin-bottom:6px}
+        .price-amt{font-size:14px; opacity:.9}
+        .badge{display:inline-block; font-size:11px; padding:3px 8px; border-radius:999px; margin-left:6px; background:linear-gradient(135deg,#EFA84C,#ffcf6c); color:#2c2c2c; font-weight:700}
+
+        .portfolio-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:8px}
+        .shot{position:relative; border-radius:12px; overflow:hidden; border:1px solid rgba(255,255,255,0.25)}
+        .shot img{width:100%; height:100%; object-fit:cover; display:block; aspect-ratio:1/1}
+        .shot:after{content:\"\"; position:absolute; inset:0; background:linear-gradient(180deg,transparent,rgba(0,0,0,.25));}
+
+        /* Accent utility using EFA84C */
+        .accent{background:linear-gradient(135deg,#EFA84C,#ffcf6c); -webkit-background-clip:text; background-clip:text; color:transparent}
+
+        @media (max-width: 480px){
+            .map-iframe{height:220px}
+            .portfolio-grid{grid-template-columns:repeat(2,1fr)}
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="salon-logo">SS</div>
+            <div class="salon-name">Sai Shardhaa</div>
+            <div class="owner-name">Owner: Bhavesh Hire</div>
+            <div class="tagline">Premium Men's Salon & Grooming</div>
+        </div>
+
+        <!-- Google Map -->
+        <div class="section">
+            <div class="section-title"><i class="fa-solid fa-location-dot"></i> Find Us on Map</div>
+            <div class="map-wrap">
+                <!-- Embedded Google Map (kept links as-is, no fields removed) -->
+                <iframe class="map-iframe" loading="lazy" allowfullscreen
+                    referrerpolicy="no-referrer-when-downgrade"
+                    src="https://www.google.com/maps?q=123%20Fashion%20Street,%20MG%20Road,%20Near%20Central%20Mall,%20Pune,%20Maharashtra%20411001&output=embed">
+                </iframe>
+            </div>
+        </div>
+
+        <!-- Pricing -->
+        <div class="section">
+            <div class="section-title"><i class="fa-solid fa-tags"></i> Pricing</div>
+            <div class="pricing-grid">
+                <div class="price-card">
+                    <div class="price-title">Hair Cut <span class="badge">Popular</span></div>
+                    <div class="price-amt">₹200 – ₹500</div>
+                </div>
+                <div class="price-card">
+                    <div class="price-title">Beard Trim</div>
+                    <div class="price-amt">₹150 – ₹300</div>
+                </div>
+                <div class="price-card">
+                    <div class="price-title">Hair Wash</div>
+                    <div class="price-amt">₹100 – ₹200</div>
+                </div>
+                <div class="price-card">
+                    <div class="price-title">Facial</div>
+                    <div class="price-amt">₹500 – ₹1000</div>
+                </div>
+                <div class="price-card">
+                    <div class="price-title">Head Massage</div>
+                    <div class="price-amt">₹300 – ₹600</div>
+                </div>
+                <div class="price-card">
+                    <div class="price-title">Hair Styling</div>
+                    <div class="price-amt">₹300 – ₹800</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Portfolio -->
+        <div class="section">
+            <div class="section-title"><i class="fa-solid fa-camera"></i> Portfolio</div>
+            <div class="portfolio-grid">
+                <a class="shot" href="https://images.unsplash.com/photo-1519744792095-2f2205e87b6f" target="_blank" rel="noopener">
+                    <img src="https://images.unsplash.com/photo-1519744792095-2f2205e87b6f?w=400&q=70" alt="Classic haircut">
+                </a>
+                <a class="shot" href="https://images.unsplash.com/photo-1519741497674-611481863552" target="_blank" rel="noopener">
+                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=400&q=70" alt="Fade style">
+                </a>
+                <a class="shot" href="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f" target="_blank" rel="noopener">
+                    <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=400&q=70" alt="Beard grooming">
+                </a>
+                <a class="shot" href="https://images.unsplash.com/photo-1514933651103-005eec06c04b" target="_blank" rel="noopener">
+                    <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=400&q=70" alt="Hair wash">
+                </a>
+                <a class="shot" href="https://images.unsplash.com/photo-1503951914875-452162b0f3f1" target="_blank" rel="noopener">
+                    <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=400&q=70" alt="Facial care">
+                </a>
+                <a class="shot" href="https://images.unsplash.com/photo-1517836357463-d25dfeac3438" target="_blank" rel="noopener">
+                    <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=400&q=70" alt="Massage">
+                </a>
+            </div>
+        </div>
+
+        <!-- Book Appointment Button -->
+        <div class="section">
+            <button class="booking-btn" onclick="openBookingModal()">
+                <i class="fa-solid fa-calendar-check"></i> Book Appointment Now
+            </button>
+
+            <!-- Social Media Links -->
+            <div class="section-title" style="text-align: center; margin-top: 20px;">
+                🌐 Follow Us
+            </div>
+            <div class="social-links">
+                <a href="https://wa.me/919876543210" target="_blank" class="social-link" title="WhatsApp">
+                    <i class="fa-brands fa-whatsapp"></i>
+                </a>
+                <a href="https://instagram.com/saishardhaa" target="_blank" class="social-link" title="Instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+                <a href="https://facebook.com/saishardhaa" target="_blank" class="social-link" title="Facebook">
+                    <i class="fa-brands fa-facebook"></i>
+                </a>
+                <a href="tel:+919876543210" class="social-link" title="Call Us">
+                    <i class="fa-solid fa-phone"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Booking Modal -->
+    <div id="bookingModal" class="modal" style="display:none;">
+        <div class="modal-content" style="background:#2c2c2c; color:white; padding:20px; border-radius:15px;">
+            <h2>Book Your Appointment</h2>
+            <form id="bookingForm">
+                <input type="text" id="customerName" placeholder="Full Name" required><br><br>
+                <input type="tel" id="customerPhone" placeholder="Phone Number" required><br><br>
+                <input type="date" id="appointmentDate" required><br><br>
+                <select id="appointmentTime" required>
+                    <option value="">Select Time</option>
+                    <option value="09:00">9:00 AM</option>
+                    <option value="09:30">9:30 AM</option>
+                    <option value="10:00">10:00 AM</option>
+                </select><br><br>
+                <button type="button" onclick="submitBooking()">Confirm Booking</button>
+                <button type="button" onclick="closeBookingModal()">Cancel</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const bookedSlots = {}; // store booked slots
+
+        function openBookingModal(){
+            document.getElementById('bookingModal').style.display = 'block';
+        }
+        function closeBookingModal(){
+            document.getElementById('bookingModal').style.display = 'none';
+        }
+        function submitBooking(){
+            const date = document.getElementById('appointmentDate').value;
+            const time = document.getElementById('appointmentTime').value;
+            if(!date || !time){
+                showNotification('Please select date and time!');
+                return;
+            }
+            if(bookedSlots[date+time]){
+                showNotification('This time slot is already taken. Please choose another.');
+                return;
+            }
+            bookedSlots[date+time] = true;
+            showNotification('Booking Confirmed! ✅');
+            closeBookingModal();
+        }
+        function showNotification(msg){
+            const note = document.createElement('div');
+            note.className = 'notification';
+            note.textContent = msg;
+            document.body.appendChild(note);
+            setTimeout(()=> note.classList.add('show'),100);
+            setTimeout(()=> note.remove(),3000);
+        }
+    </script>
+</body>
+</html>
